@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora IMC</title>
+<style>
+      body {
+        background-image: url(https://previews.123rf.com/images/atlasfoto/atlasfoto2103/atlasfoto210301634/165871064-balan%C3%A7as-com-fita-m%C3%A9trica-no-fundo-branco.jpg);
+   background-size: cover;
+      }
+                body {
+            font-size: 20px;
+        }
+        
+         table {
+  border-collapse: solid;
+  border-spacing: 12;
+  width: 40%;
+}
+
+th, td {
+  border: 1px solid  black;
+  padding: 5px;
+}
+h1 {
+    text-align: center;
+}
+p {
+    text-indent: 25px;
+}
+  #situacao { font-weight: bold; }
+  .normal { color: green; }
+  .alerta { color: orange; }
+  .perigo { color: red; }
+</style>
+</head>
+<body>
+
+
+<h1>Índice de Massa Corporal-IMC</h1>
+<p>O índice de massa corporal (IMC) é uma medida internacional usada para calcular se uma pessoa está no peso ideal. </p>
+<h3>Como Calcular:</h3>
+<p>O IMC é determinado pela divisão da <span style="color: blue;">massa</span> do indivíduo pelo quadrado de sua altura, em que a massa está em  <span style="color: blue;">quilogramas</span><br> e a altura em <span style="color: blue;">metros.</span></p>
+ <br>
+
+<p>
+  Peso (kg): <input type="number" id="peso" step="any" />
+  Altura (m): <input type="number" id="altura" step="any" />
+  <button onclick="calcularIMC()">Calcular IMC</button>
+</p>
+
+<p>Seu IMC: <span id="valorIMC"></span></p>
+<p>Situação: <span id="situacao"></span></p>
+
+<script>
+  function calcularIMC() {
+    var peso = parseFloat(document.getElementById("peso").value);
+    var altura = parseFloat(document.getElementById("altura").value);
+    var imc = peso / (altura * altura);
+    var situacao = document.getElementById("situacao");
+    var valorIMC = document.getElementById("valorIMC");
+
+    valorIMC.innerHTML = imc.toFixed(2);
+
+    if (imc < 18.5) {
+      situacao.innerHTML = "Abaixo do peso";
+      situacao.className = "alerta";
+    } else if (imc >= 18.5 && imc <= 24.9) {
+      situacao.innerHTML = "Normal";
+      situacao.className = "normal";
+    } else if (imc >= 25 && imc <= 29.9) {
+      situacao.innerHTML = "Acima do peso";
+      situacao.className = "alerta";
+    } else if (imc >= 30 && imc <= 34.9) {
+      situacao.innerHTML = "Obesidade I";
+      situacao.className = "perigo";
+    } else if (imc >= 35 && imc <= 39.9) {
+      situacao.innerHTML = "Obesidade II";
+      situacao.className = "perigo";
+    } else {
+      situacao.innerHTML = "Obesidade III";
+      situacao.className = "perigo";
+    }
+  }
+</script>
+<table style="background-color: azure;">
+  <th colspan="2">Tabela do IMC</th>
+     <tr> 
+      <th>Resultado</th>
+      <th>Situação</th>
+    </tr>
+    <tr>
+      <td style="color: orange;"> 17</td>
+      <td style="color: orange;">Muito abaixo do peso</td>
+    </tr>
+    <tr>
+      <td style="color: orange;">17 ≤ Resultado ≤ 18,49</td>
+      <td style="color: orange;">Abaixo do peso</td>
+    </tr>
+    <tr>
+      <td style="color: green;">18,50 ≤ Resultado ≤ 24,99</td>
+      <td style="color: green;">Peso normal</td>
+    </tr>
+    <tr>
+      <td style="color: red;">25 ≤ Resultado ≤ 29,99</td>
+      <td style="color: red;">Acima do peso</td>
+    </tr>
+    <tr>
+      <td style="color: red;">30 ≤ Resultado ≤ 34,99</td>
+      <td style="color: red;">Obesidade I</td>
+    </tr>
+    <tr>
+      <td style="color: red;">35 ≤ Resultado ≤ 39,99</td>
+      <td style="color: red;">Obesidade II (severa)</td>
+    </tr>
+    <tr>
+      <td style="color: red;">≥ 40</td>
+      <td style="color: red;">Obesidade III (mórbida)</td>
+    </tr>
+</table>
+<a href="index.html"><strong>Voltar</strong></a>
+
+</body>
+</html>
